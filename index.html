@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        #clock {
+            display: inline-block;
+            border: 2px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f4f4f4;
+        }
+
+        #clock h1 {
+            margin: 0;
+            font-size: 36px;
+            color: #333;
+        }
+
+        #hours, #minutes, #seconds {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            margin: 10px;
+            border: none;
+            border-radius: 50%;
+            background-color: #333;
+            color: #fff;
+            line-height: 60px;
+        }
+    </style>
+    <script>
+        function time() {
+            let d = new Date();
+            let h = d.getHours();
+            let m = d.getMinutes();
+            let s = d.getSeconds();
+            let meridiem = "AM";
+
+            // Convert to 12-hour format
+            if (h >= 12) {
+                meridiem = "PM";
+                h = h % 12 || 12;
+            }
+
+            // Pad single digit minutes and seconds with leading zero
+            m = m < 10 ? "0" + m : m;
+            s = s < 10 ? "0" + s : s;
+
+            document.getElementById("hours").textContent = h;
+            document.getElementById("minutes").textContent = m;
+            document.getElementById("seconds").textContent = s;
+            document.getElementById("meridiem").textContent = meridiem;
+        }
+        setInterval(time, 1000);
+    </script>
+</head>
+<body>
+    <div id="clock">
+        <h1>Clock</h1>
+        <button id="hours"></button>
+        <button id="minutes"></button>
+        <button id="seconds"></button>
+        <button id="meridiem"></button>
+    </div>
+</body>
+</html>
